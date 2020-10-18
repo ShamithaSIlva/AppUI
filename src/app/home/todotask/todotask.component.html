@@ -1,0 +1,21 @@
+<div class="card">
+    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+        <div class="card-header" id="heading{{task.id}}">
+            <h5 class="mb-0">
+            {{task.taskName}}
+            </h5>
+            <span class="last-update-date">{{task.lastUpdated}}</span>
+        </div>          
+        <div class="card-body">
+            <div class="form-group">
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">{{task.description}}</textarea>
+            </div>  
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="isDone{{task.id}}">
+                <label class="form-check-label" for="isDone{{task.id}}">Done</label>
+                </div>
+            <button type="submit" class="btn btn-primary">Update</button>                                    
+        </div>
+    </form>
+</div>
+

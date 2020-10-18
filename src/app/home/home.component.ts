@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from '@app/_models/todo.model';
+import { TODOListService } from '@app/_services/todolist.service';
 
 @Component({
   selector: 'app-home',
@@ -9,10 +10,12 @@ import { Task } from '@app/_models/todo.model';
 export class HomeComponent implements OnInit {
 
   taskList: Task[] = [];
-  constructor() { }
+  constructor(private todolistService:TODOListService) { }
 
   ngOnInit() {
-    
+    this.todolistService.findTaksForUser().subscribe(data =>{
+      this.taskList = data;
+    })
   }
 
 }
