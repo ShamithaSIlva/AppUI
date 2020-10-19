@@ -18,4 +18,17 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  newTaskAdded(task:Task){
+    this.taskList.push(task);
+  }
+
+  deletedTask(id:any)
+  {
+    for(var i = 0; i < this.taskList.length; i++) {
+      if(this.taskList[i].id == id) {
+         this.taskList.splice(i, 1);
+          break;
+      }
+    }
+  }
 }

@@ -2,19 +2,25 @@
     <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
         <div class="card-header" id="heading{{task.id}}">
             <h5 class="mb-0">
-            {{task.taskName}}
+            <input type="text" formControlName="taskName" placeholder="Add a task name"> 
             </h5>
             <span class="last-update-date">{{task.lastUpdated}}</span>
         </div>          
         <div class="card-body">
             <div class="form-group">
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">{{task.description}}</textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="description" placeholder="Add description here..">{{task.description}}</textarea>
             </div>  
             <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="isDone{{task.id}}">
+                <input type="checkbox" class="form-check-input" id="isDone{{task.id}}"  formControlName="checked">
                 <label class="form-check-label" for="isDone{{task.id}}">Done</label>
                 </div>
-            <button type="submit" class="btn btn-primary">Update</button>                                    
+            <div *ngIf="!isNew">
+                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="button" class="btn btn-outline-danger delete-btn" (click)="deleteTask(task.id)">Delete</button>  
+            </div>
+            <div *ngIf="isNew">
+                <button type="button" (click)="saveTask()" class="btn btn-primary" data-dismiss="modal">Save</button>  
+            </div>                                           
         </div>
     </form>
 </div>

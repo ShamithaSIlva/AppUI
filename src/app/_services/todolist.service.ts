@@ -17,7 +17,15 @@ export class TODOListService{
         return this.http.get<Task[]>(environment.apiUrl+'/tasks');
     }
 
-    public updateTask(){
-        return this.http.post<Task[]>(environment.apiUrl+'/tasks',{});
+    public updateTask(formData:any){
+        return this.http.put<Task>(environment.apiUrl+'/tasks/update',formData);
+    }
+
+    public deleteTask(id:number){
+        return this.http.delete(environment.apiUrl+'/tasks/delete/'+id.toString());
+    }
+
+    public saveTask(formData:any){
+        return this.http.post<Task>(environment.apiUrl+'/tasks/add',formData);
     }
 }

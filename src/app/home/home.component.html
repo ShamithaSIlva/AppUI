@@ -1,8 +1,23 @@
-<div class="card mt-4">
-    <h4 class="card-header">These are the available tasks</h4>
+<div class="add-task-div">
+    <button type="button" class="btn btn-primary add-task-btn" data-toggle="modal" data-target="#taskModal">Add Task</button>
+</div>
+<div class="card mt-4">    
     <div class="card-body">
         <div id="accordion">
-            <app-todotask *ngFor="let task of taskList" [task]=task></app-todotask>                       
+            <app-todotask *ngFor="let task of taskList" [task]=task [isNew]=false (deleteTaskEvent)=deletedTask($event)></app-todotask>                       
         </div>       
+    </div>
+</div>
+<div class="modal" id="taskModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Add New Task</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <app-todotask  [isNew]=true (taskAdded)=newTaskAdded($event) ></app-todotask>
+        </div>              
+        </div>
     </div>
 </div>
